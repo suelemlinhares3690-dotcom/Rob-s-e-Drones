@@ -3,7 +3,7 @@ import RobotFace from './components/RobotFace';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Cpu, User } from 'lucide-react';
-
+import ReactMarkdown from 'react-markdown';
 function App() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
@@ -68,8 +68,10 @@ function App() {
                 <div className={`icon-wrapper ${msg.role}`}>
                   {msg.role === 'user' ? <User size={16} /> : <Cpu size={16} />}
                 </div>
-                <div className="message-bubble glass">
-                  <p>{msg.content}</p>
+                <div className="message-bubble glass markdown-content">
+                  <ReactMarkdown>
+                    {String(msg.content)}
+                  </ReactMarkdown>
                 </div>
               </motion.div>
             ))}
